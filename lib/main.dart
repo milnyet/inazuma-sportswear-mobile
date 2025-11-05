@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inazuma_sportswear/menu.dart';
+import 'package:inazuma_sportswear/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
