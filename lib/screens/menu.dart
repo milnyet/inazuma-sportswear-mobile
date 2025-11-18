@@ -6,27 +6,29 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final List<ItemHomepage> items = [
-    ItemHomepage("All Products", Icons.store, Colors.blue),
+    ItemHomepage("All Products", Icons.store, Colors.orange),
+    ItemHomepage("Add Product", Icons.post_add, Colors.red),
     ItemHomepage("My Products", Icons.account_circle, Colors.green),
-    ItemHomepage("Create Product", Icons.add, Colors.red),
+    ItemHomepage("Featured Products", Icons.star, Colors.yellow),
   ];
 
   @override
   Widget build(BuildContext context) {
     // Scaffold menyediakan struktur dasar halaman dengan AppBar dan body.
     return Scaffold(
+      backgroundColor: Colors.blue[300],
       // AppBar adalah bagian atas halaman yang menampilkan judul.
       appBar: AppBar(
         // Judul aplikasi dengan teks putih dan tebal.
         title: const Text(
           'Inazuma Sportswear',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.blue,
             fontWeight: FontWeight.bold,
           ),
         ),
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Colors.yellow[700],
       ),
       drawer: LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
@@ -63,10 +65,10 @@ class MyHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    crossAxisCount: 3,
+                    crossAxisCount: 2,
                     // Agar grid menyesuaikan tinggi kontennya.
                     shrinkWrap: true,
-
+                    childAspectRatio: 2.8,
                     // Menampilkan ItemCard untuk setiap item dalam list items.
                     children: items.map((ItemHomepage item) {
                       return ItemCard(item);

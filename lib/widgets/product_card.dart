@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inazuma_sportswear/screens/productlist_form.dart';
+import 'package:inazuma_sportswear/screens/product_entry_list.dart';
+import 'package:inazuma_sportswear/screens/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ItemHomepage {
   final String name;
@@ -18,6 +22,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       // Menentukan warna latar belakang dari tema aplikasi.
       color: item.color,
@@ -26,7 +31,7 @@ class ItemCard extends StatelessWidget {
 
       child: InkWell(
         // Aksi ketika kartu ditekan.
-        onTap: () {
+        onTap: () async {
           // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -34,10 +39,34 @@ class ItemCard extends StatelessWidget {
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
 
           // Navigate ke route yang sesuai (tergantung jenis tombol)
-          if (item.name == "Create Product") {
+          if (item.name == "Add Product") {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const ProductFormPage()),
+            );
+          }
+          else if (item.name == "All Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ProductEntryListPage()
+              ),
+            );
+          }
+          else if (item.name == "My Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProductEntryListPage(showOnlyMine: true),
+              ),
+            );
+          }
+          else if (item.name == "Featured Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProductEntryListPage(showFeatured: true),
+              ),
             );
           }
         },
