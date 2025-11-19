@@ -37,7 +37,7 @@ class ProductEntryCard extends StatelessWidget {
                     child: AspectRatio(
                       aspectRatio: 16 / 9,
                       child: Image.network(
-                        'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
+                        'https://emilio-junino-inazumasportswear.pbp.cs.ui.ac.id/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stack) => Container(
                           color: Colors.yellow[200],

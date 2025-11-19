@@ -63,16 +63,19 @@ class ProductDetailPage extends StatelessWidget {
               ],
             ),
             if (product.thumbnail.isNotEmpty)
-              Image.network(
-                'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
-                width: double.infinity,
-                height: 250,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
+              AspectRatio(
+                aspectRatio: 16/9,
+                child: Image.network(
+                  'https://emilio-junino-inazumasportswear.pbp.cs.ui.ac.id/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
+                  width: double.infinity,
                   height: 250,
-                  color: Colors.grey[300],
-                  child: const Center(
-                    child: Icon(Icons.broken_image, size: 50),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    height: 250,
+                    color: Colors.grey[300],
+                    child: const Center(
+                      child: Icon(Icons.broken_image, size: 50),
+                    ),
                   ),
                 ),
               ),
